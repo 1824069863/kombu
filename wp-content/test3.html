@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .box {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+
+        }
+
+        .box .inner {
+            margin-top: 7%;
+            position: absolute;
+            left: 20%;
+            width: 200%;
+            height: 70%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 0, 0, 0.199);
+        }
+
+        .box .inner>div {
+            width: 25%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box .inner div img {
+            width: 50%;
+        }
+
+        .box #left {
+            position: absolute;
+            top: 0;
+        }
+
+        .box #right {
+            position: absolute;
+            top: 0;
+            left: 140px;
+        }
+
+        .ani {
+            animation: toleft 1s cubic-bezier(0, 0.68, 0.5, 0.98);
+        }
+
+        @keyframes toleft {
+            0% {
+                transform: translateX(4px);
+            }
+
+            50% {
+                transform: translateX(-4px);
+            }
+
+            100% {
+                transform: translateX(0px);
+            }
+        }
+
+        .box .inner .d1 {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .box .inner .d1>div {
+            width: 50%;
+        }
+
+        .innermove {
+            animation: innerMove 1.2s cubic-bezier(0.55, 0.09, 0.25, 1) forwards;
+        }
+
+        @keyframes innerMove {
+            from {}
+
+            to {
+                left: -31%;
+            }
+        }
+
+        @keyframes imgsMove {
+            0% {
+                transform: translateX(0px)
+            }
+
+            50% {
+                transform: translateX(10px)
+            }
+
+            100% {
+                transform: translateX(0px)
+            }
+        }
+
+        @keyframes textMove {
+            0% {
+                opacity: 0.5;
+                transform: translateX(0px)
+            }
+
+            50% {
+               
+                transform: translateX(10px)
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0px)
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div id="innerId" class="inner">
+            <div class="d1">
+                <div class="text">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore mollitia quisquam, accusamus,
+                        aperiam minima
+                        cupiditate expedita modi voluptas reiciendis voluptate laboriosam dolor aut tenetur ad nisi.
+                        Itaque eum vero
+                        saepe?</span>
+                </div>
+                <div>
+                    <img class="imgs" src="./sources/0825.jpg" alt="">
+                </div>
+            </div>
+            <div class="d1">
+                <div class="text">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore mollitia quisquam, accusamus,
+                        aperiam minima
+                        cupiditate expedita modi voluptas reiciendis voluptate laboriosam dolor aut tenetur ad nisi.
+                        Itaque eum vero
+                        saepe?</span>
+                </div>
+                <div>
+                    <img class="imgs" src="./sources/0825.jpg" alt="">
+                </div>
+            </div>
+            <div class="d1">
+                <div class="text">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore mollitia quisquam, accusamus,
+                        aperiam minima
+                        cupiditate expedita modi voluptas reiciendis voluptate laboriosam dolor aut tenetur ad nisi.
+                        Itaque eum vero
+                        saepe?</span>
+                </div>
+                <div>
+                    <img class="imgs" src="./sources/0825.jpg" alt="">
+                </div>
+            </div>
+            <div class="d1">
+                <div class="text">
+                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore mollitia quisquam, accusamus,
+                        aperiam minima
+                        cupiditate expedita modi voluptas reiciendis voluptate laboriosam dolor aut tenetur ad nisi.
+                        Itaque eum vero
+                        saepe?</span>
+                </div>
+                <div>
+                    <img class="imgs" src="./sources/0825.jpg" alt="">
+                </div>
+            </div>
+        </div>
+        <!-- <input id="left" type="button" value="<---"> -->
+        <input id="right" type="button" value="--->">
+    </div>
+
+</body>
+<script src="./js/jquery-3.1.1.min.js"></script>
+<script>
+    //点击→动画效果
+    document.getElementById('right').onclick = function () {
+        document.getElementById('innerId').classList.add('innermove');
+        for (var i = 0; i < 4; i++) {
+            document.getElementsByClassName('imgs')[i].style.animation = 'imgsMove 1s ease';
+            document.getElementsByClassName('imgs')[i].style.animationDelay = i * 0.5 + 's';
+            document.getElementsByClassName('text')[i].style.animation = 'textMove 1s ease';
+            document.getElementsByClassName('text')[i].style.animationDelay = i * 0.5 + 's';
+        }
+    }
+    // 监听最后一个动画结束
+    document.getElementsByClassName('imgs')[3].addEventListener('animationend',function(){
+        alert('最后动画结束');
+        // document.getElementById('innerId').classList.remove('innermove');
+    })
+</script>
+
+</html>
